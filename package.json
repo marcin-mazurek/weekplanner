@@ -1,0 +1,35 @@
+{
+  "name": "weekplanner",
+  "private": true,
+  "version": "0.0.1",
+  "description": "WeekPlanner app",
+  "scripts": {
+    "start": "webpack-dev-server --progress --profile --colors --hot",
+    "build": "webpack --progress --profile --colors"
+  },
+  "author": "Marcin Mazurek <marcin@mazurek.pro>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "4.12.0",
+    "material-ui": "0.15.0",
+    "react": "15.1.0",
+    "react-dom": "15.1.0",
+    "react-tap-event-plugin": "1.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "6.9.0",
+    "babel-loader": "6.2.4",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-react": "6.5.0",
+    "css-loader": "0.23.1",
+    "extract-text-webpack-plugin": "1.0.1",
+    "file-loader": "0.8.5",
+    "react-hot-loader": "1.3.0",
+    "sass-loader": "3.2.0",
+    "node-sass": "3.7.0",
+    "style-loader": "0.13.1",
+    "url-loader": "0.5.7",
+    "webpack": "1.13.1",
+    "webpack-dev-server": "1.14.1"
+  }
+}
