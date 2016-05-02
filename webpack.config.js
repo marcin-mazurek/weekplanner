@@ -7,29 +7,22 @@ var config = {
 	entry: [
 		'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
 		'webpack/hot/only-dev-server',
-		'./src/index.jsx' // Your appʼs entry point
+		'./src/index.jsx' // Application entry point
 	],
 	output: {
-		path: path.join(__dirname, 'public'),
+		path: 'public',
 		filename: 'bundle.js'
 	},
 	resolve: {
-		extensions: ['', '.js', '.jsx']
+		extensions: ['', '.js', '.jsx'],
+		modulesDirectories: ['node_modules', 'src'],
 	},
 	module: {
 		loaders: [
 			{
 				test: /\.jsx?$/,
-				exclude: /(node_modules|bower_components)/,
+				exclude: /(node_modules)/,
 				loaders: ['react-hot', 'babel'],
-			},
-			{
-				test: /\.scss$/,
-				loader: ExtractTextPlugin.extract('style',
-			    'css?modules&importLoaders=1&localIdentName='
-					+ (isProduction ? '[hash:base64:5]' : '[name]__[local]__[hash:base64:3]')
-					+ '!sass'
-				)
 			},
 			{
 				test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -68,18 +61,40 @@ var config = {
 		inline: true
 	},
 	plugins: [
-		new webpack.NoErrorsPlugin(),
-  	new ExtractTextPlugin(path.join(__dirname, 'public', 'stylesheet.css'), { allChunks: true })
+		// Disable Webpack process crashes
+		new webpack.NoErrorsPlugin()
 	]
 };
 
+var stylesLoaderConfig = 'css?modules&importLoaders=1&localIdentName='
+	+ (isProduction ? '[hash:base64:5]' : '[name]__[local]__[hash:base64:3]')
+	+ '!sass';
+
 if (isProduction) {
+	// Hardcode NODE_ENV environment variable as 'production' for dead code elimination
 	config.plugins.push(
 		new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
     })
 	);
 
+	// Bundle styles into one CSS file
+	config.loaders.push({
+		test: /\.scss$/,
+		loader: ExtractTextPlugin.extract('style', stylesLoaderConfig)
+	});
+}
+else {
+	// Load styles inline for hot reloading
+	config.module.loaders.push({
+		test: /\.scss$/,
+		loader: 'style!' + stylesLoaderConfig
+	});
+	config.plugins.push(
+		new ExtractTextPlugin('stylesheet.css', { allChunks: true })
+	);
+
+	// Add source maps for debugging
 	config.devtool = 'source-map';
 }
 
