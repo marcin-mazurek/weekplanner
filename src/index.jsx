@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Layout from 'components/layout';
+import Week from 'scenes/week/week';
+import Layout from 'components/layout/layout';
 import 'styles/global.scss';
 
 class WeekPlanner extends Component {
@@ -10,7 +11,7 @@ class WeekPlanner extends Component {
     return (
       <MuiThemeProvider>
         <Layout>
-          <h1>WeekPlanner</h1>
+          <Week />
         </Layout>
       </MuiThemeProvider>
     );
