@@ -9,8 +9,9 @@ import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import MonthView from 'material-ui/svg-icons/action/view-module';
 import WeekView from 'material-ui/svg-icons/action/view-column';
 import DashboardView from 'material-ui/svg-icons/action/view-quilt';
-import { lightBlue700 } from 'material-ui/styles/colors';
 import Divider from 'material-ui/Divider';
+import styles from './layout.scss';
+import { lightBlue700 } from 'material-ui/styles/colors';
 
 export default class Layout extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ export default class Layout extends Component {
 
   render() {
     return (
-      <main>
+      <main className={styles.main}>
         <AppBar title="WeekPlanner"
           style={{ backgroundColor: lightBlue700 }}
           onLeftIconButtonTouchTap={this.toggleMenu} />
