@@ -3,11 +3,39 @@ import { times } from 'lodash';
 import styles from './week.scss';
 import Column from './components/column/column';
 
+const minimalColumnWidth = 240;
+
 export default class Week extends Component {
+  componentWillMount() {
+    this.calculateNumberOfColumns();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener(this.resizeEventHandler);
+  }
+
+  componentDidMount() {
+    this.resizeEventHandler = window.addEventListener('resize', () => {
+      this.calculateNumberOfColumns();
+    });
+  }
+
+  calculateNumberOfColumns() {
+    const numberOfDisplayedColumns = Math.floor(window.innerWidth / minimalColumnWidth);
+
+    this.setState({
+      numberOfDisplayedColumns
+    });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.numberOfDisplayedColumns !== nextState.numberOfDisplayedColumns;
+  }
+
   render() {
     return (
       <div className={styles.container}>
-        {times(5, index => (
+        {times(this.state.numberOfDisplayedColumns, index => (
           <Column key={index} daysSinceToday={index} />
         ))}
       </div>
