@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { times } from 'lodash';
 import moment from 'moment';
+import Card from 'components/card/card';
 import AddIcon from 'material-ui/svg-icons/content/add-circle-outline';
 import IconButton from 'material-ui/IconButton';
 import styles from './column.scss';
@@ -24,7 +25,8 @@ export default class Column extends Component {
           </div>
         </div>
         <div className={styles.content}>
-          Some content here...
+          { /* TODO: fake data */ }
+          {times(Math.floor(Math.random() * 10), index => <Card key={index} />)}
         </div>
       </div>
     );
