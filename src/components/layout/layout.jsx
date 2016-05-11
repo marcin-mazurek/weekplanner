@@ -11,7 +11,6 @@ import WeekView from 'material-ui/svg-icons/action/view-column';
 import DashboardView from 'material-ui/svg-icons/action/view-quilt';
 import Divider from 'material-ui/Divider';
 import styles from './layout.scss';
-import { lightBlue700 } from 'material-ui/styles/colors';
 
 export default class Layout extends Component {
   constructor(props) {
@@ -28,7 +27,7 @@ export default class Layout extends Component {
     return (
       <main className={styles.main}>
         <AppBar title="WeekPlanner"
-          style={{ backgroundColor: lightBlue700 }}
+          className={styles.appBar}
           onLeftIconButtonTouchTap={this.toggleMenu} />
         <Drawer
           docked={false}

@@ -1,3 +1,5 @@
+@import '../../styles/helpers';
+
 .main {
   display: flex;
   flex-direction: column;
@@ -5,4 +7,8 @@
   align-items: stretch;
   align-content: stretch;
   height: 100%;
+}
+
+.appBar {
+  background-color: $weekplanner-primary-blue !important;
 }

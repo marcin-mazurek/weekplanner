@@ -5,22 +5,20 @@ import Card from 'components/card/card';
 import AddIcon from 'material-ui/svg-icons/content/add-circle-outline';
 import IconButton from 'material-ui/IconButton';
 import styles from './column.scss';
-import { lightBlue700 } from 'material-ui/styles/colors';
-
-const minimalColumnWidth = 240;
 
 export default class Column extends Component {
   render() {
     return (
-      <div className={styles.column} style={{ minWidth: minimalColumnWidth }}>
+      <div className={styles.column}>
         <div className={styles.header}>
           <div className={styles.headerText}>
             { /* TODO: fake data */ }
             {moment().add(this.props.daysSinceToday, 'days').format('dddd DD.MM')}
           </div>
           <div>
+            { /* TODO: add event handler */ }
             <IconButton>
-              <AddIcon color={lightBlue700} />
+              <AddIcon className={styles.addIcon} />
             </IconButton>
           </div>
         </div>
@@ -32,3 +30,5 @@ export default class Column extends Component {
     );
   }
 }
+
+export const minimalColumnWidth = parseInt(styles.minimalColumnWidth);

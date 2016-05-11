@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { times } from 'lodash';
 import styles from './week.scss';
-import Column from './components/column/column';
-
-const minimalColumnWidth = 240;
+import Column, { minimalColumnWidth } from './components/column/column';
 
 export default class Week extends Component {
   componentWillMount() {

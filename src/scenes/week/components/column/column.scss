@@ -3,11 +3,15 @@
 $column-border-size: 1px;
 $column-border: $column-border-size solid material-color('grey', '300');
 $button-width-height: 48px;
+$minimal-column-width: 240px;
+
+:export { minimalColumnWidth: $minimal-column-width; }
 
 .column {
   @include flex-1;
   flex-direction: column;
   border-right: $column-border;
+  min-width: $minimal-column-width;
 
   &:last-child {
     border-right: none;
@@ -17,7 +21,7 @@ $button-width-height: 48px;
 .header {
   display: flex;
   align-items: center;
-  font-size: $header-3;
+  font-size: $font-size-header-3;
   border-bottom: $column-border;
   min-height: $button-width-height + $column-border-size;
   font-weight: normal;
@@ -38,4 +42,8 @@ $button-width-height: 48px;
   overflow-y: auto;
   padding: 0 10px;
   background: $weekplanner-xlight-gray;
+}
+
+.addIcon {
+  fill: $weekplanner-primary-blue !important;
 }
