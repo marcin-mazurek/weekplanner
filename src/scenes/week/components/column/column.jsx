@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { times } from 'lodash';
 import moment from 'moment';
-import Card from 'components/card/card';
+import CardWithFakeData from 'components/card/card-with-fake-data';
 import AddIcon from 'material-ui/svg-icons/content/add-circle-outline';
 import IconButton from 'material-ui/IconButton';
 import styles from './column.scss';
@@ -24,7 +24,7 @@ export default class Column extends Component {
         </div>
         <div className={styles.content}>
           { /* TODO: fake data */ }
-          {times(Math.floor(Math.random() * 10), index => <Card key={index} />)}
+          {times(Math.floor(Math.random() * 6), index => <CardWithFakeData key={index} />)}
         </div>
       </div>
     );

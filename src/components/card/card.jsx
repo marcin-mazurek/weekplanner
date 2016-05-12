@@ -1,38 +1,52 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from './card.scss';
+import IconButton from 'material-ui/IconButton';
+import ClockIcon from 'material-ui/svg-icons/device/access-time';
 import Paper from 'material-ui/Paper';
-import { times } from 'lodash';
 
 export default class Card extends Component {
-  getText() {
-    const numberOfSentences = Math.ceil(Math.random() * 7);
+  renderTime() {
+    if (this.props.time) {
+      return (
+        <time className={styles.time}>
+          <ClockIcon className={styles.timeIcon} />
+          {this.props.time}
+        </time>
+      );
+    }
+  }
 
-    const sentences = [
-      'Lorem ipsum dolor sit amet.',
-      'Aenean commodo ligula eget dolor.',
-      'Aenean massa.',
-      'Donec elit libero, sodales nec, volutpat a, suscipit non, turpis.',
-      'Vestibulum facilisis, purus nec pulvinar iaculis, ligula mi congue nunc, vitae euismod ligula urna in dolor.',
-    ]
+  renderDescription() {
+    if (this.props.description) {
+      return <p className={styles.description}>{this.props.description}</p>;
+    }
+  }
 
-    const text = [];
-
-    times(numberOfSentences, () => {
-      const i = Math.floor(Math.random() * sentences.length);
-      text.push(sentences[i]);
-    })
-
-    return text.join(' ');
+  getCardStyles() {
+    if (this.props.color) {
+      return { backgroundColor: this.props.color };
+    }
   }
 
   render() {
     return (
-      <div className={styles.card}>
-        <Paper zDepth={1}>
-          { /* TODO: fake data */ }
-          {this.getText()}
-        </Paper>
-      </div>
+      <Paper className={styles.card} style={this.getCardStyles()}>
+        {this.renderTime()}
+        <h3 className={styles.title}>{this.props.title}</h3>
+        {this.renderDescription()}
+      </Paper>
     );
   }
 }
+
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  time: PropTypes.string,
+  checklist: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    checked: PropTypes.bool.isRequired,
+    description: PropTypes.string.isRequired
+  })),
+  color: PropTypes.string
+};
