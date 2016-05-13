@@ -9,7 +9,7 @@ $card-spacing-between-elements: 10px;
   padding: $card-spacing $card-spacing ($card-spacing - $card-spacing-between-elements) $card-spacing;
 }
 
-.title, .description, .time {
+.title, .description, .time, .checklist {
   margin: 0 0 $card-spacing-between-elements 0;
 }
 

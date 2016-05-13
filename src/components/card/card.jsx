@@ -3,6 +3,7 @@ import styles from './card.scss';
 import IconButton from 'material-ui/IconButton';
 import ClockIcon from 'material-ui/svg-icons/device/access-time';
 import Paper from 'material-ui/Paper';
+import Checkbox from 'material-ui/Checkbox';
 
 export default class Card extends Component {
   renderTime() {
@@ -22,6 +23,24 @@ export default class Card extends Component {
     }
   }
 
+  renderChecklist() {
+    if (this.props.checklist && this.props.checklist.length) {
+      return (
+        <div className={styles.checklist}>
+          {this.props.checklist.map(this.renderSubtask)}
+        </div>
+      );
+    }
+  }
+
+  renderSubtask(subtask) {
+    return (
+      <Checkbox label={subtask.description}
+        className={styles.checkbox}
+        defaultChecked={subtask.checked} /> // TODO: this needs to be controlled by React (change to checked prop)
+    );
+  }
+
   getCardStyles() {
     if (this.props.color) {
       return { backgroundColor: this.props.color };
@@ -34,6 +53,7 @@ export default class Card extends Component {
         {this.renderTime()}
         <h3 className={styles.title}>{this.props.title}</h3>
         {this.renderDescription()}
+        {this.renderChecklist()}
       </Paper>
     );
   }

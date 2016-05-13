@@ -34,4 +34,22 @@ const getText = () => {
 
 const getTime = () => randomNumber(1) ? null : `${randomNumber(23)}:${randomNumber(5)}0`;
 
-export default () => <Card description={getText()} color={randomElement(colors)} time={getTime()} title={randomElement(sentences)} />;
+const getChecklist = () => {
+  if (randomNumber(1)) {
+    return null;
+  }
+
+  const checklist = [];
+
+  times(randomNumber(5), index => {
+    checklist.push({
+      id: randomNumber(10000000).toString(),
+      checked: !!randomNumber(1),
+      description: 'Subtask ' + (index + 1)
+    });
+  });
+
+  return checklist;
+}
+
+export default () => <Card description={getText()} checklist={getChecklist()} color={randomElement(colors)} time={getTime()} title={randomElement(sentences)} />;
