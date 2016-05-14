@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import styles from './card.scss';
 import IconButton from 'material-ui/IconButton';
 import ClockIcon from 'material-ui/svg-icons/device/access-time';
+import DoneIcon from 'material-ui/svg-icons/action/done';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 
@@ -15,6 +16,15 @@ export default class Card extends Component {
         </time>
       );
     }
+  }
+
+  renderDoneButton() {
+    // TODO: provide event handler
+    return (
+      <IconButton className={styles.doneButton}>
+        <DoneIcon className={styles.doneIcon} />
+      </IconButton>
+    );
   }
 
   renderDescription() {
@@ -50,6 +60,7 @@ export default class Card extends Component {
   render() {
     return (
       <Paper className={styles.card} style={this.getCardStyles()}>
+        {this.renderDoneButton()}
         {this.renderTime()}
         <h3 className={styles.title}>{this.props.title}</h3>
         {this.renderDescription()}

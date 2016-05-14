@@ -7,6 +7,10 @@ $card-spacing-between-elements: 10px;
   display: block;
   margin: $card-spacing 0;
   padding: $card-spacing $card-spacing ($card-spacing - $card-spacing-between-elements) $card-spacing;
+
+  &:hover .doneIcon, &:focus .doneIcon {
+    opacity: 1;
+  }
 }
 
 .title, .description, .time, .checklist {
@@ -20,6 +24,16 @@ $card-spacing-between-elements: 10px;
 .time {
   display: flex;
   font-size: $font-size-paragraph;
+}
+
+.doneButton {
+  float: right;
+  margin: -15px -12px 0 0 !important;
+}
+
+.doneIcon {
+  fill: material-color('green', '600') !important;
+  opacity: 0;
 }
 
 .description {
