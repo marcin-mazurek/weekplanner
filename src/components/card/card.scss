@@ -46,3 +46,22 @@ $card-spacing-between-elements: 10px;
   width: 16px !important;
   height: 16px !important;
 }
+
+// TODO: find a better way of styling the component
+.checkbox {
+  margin-bottom: 3px;
+
+  // checked checkbox
+  svg:nth-child(2) {
+    fill: $weekplanner-primary-blue !important;
+  }
+
+  // tickbox
+  > div > div {
+    margin-right: 7px !important;
+  }
+
+  label {
+    font-size: $font-size-paragraph !important;
+  }
+}
