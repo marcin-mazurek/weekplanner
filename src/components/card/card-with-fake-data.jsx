@@ -1,4 +1,4 @@
-import Card from './card';
+import EditableCard from './editable-card/editable-card';
 import { times } from 'lodash';
 import React from 'react';
 
@@ -52,4 +52,4 @@ const getChecklist = () => {
   return checklist;
 }
 
-export default () => <Card description={getText()} checklist={getChecklist()} color={randomElement(colors)} time={getTime()} title={randomElement(sentences)} />;
+export default () => <EditableCard description={getText()} checklist={getChecklist()} color={randomElement(colors)} time={getTime()} title={randomElement(sentences)} />;

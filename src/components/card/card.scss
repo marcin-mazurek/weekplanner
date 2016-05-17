@@ -7,9 +7,19 @@ $card-spacing-between-elements: 10px;
   display: block;
   margin: $card-spacing 0;
   padding: $card-spacing $card-spacing ($card-spacing - $card-spacing-between-elements) $card-spacing;
+  transition: all 450ms;
 
   &:hover .doneIcon, &:focus .doneIcon {
     opacity: 1;
+  }
+
+  &.editModeOriginal {
+    opacity: 0.1;
+  }
+
+  &.editModeModal {
+    max-width: 700px;
+    margin: auto;
   }
 }
 
