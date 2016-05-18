@@ -20,10 +20,13 @@ export default class EditableCard extends Component {
     this.setState({ inEditMode: true }, () => this.initializeEscapeKeyEventHandler());
   }
 
+  componentWillUnmount() {
+    this.removeEscapeKeyEventHandler();
+  }
+
   leaveEditMode(event) {
     event && event.stopPropagation();
-    this.removeEscapeKeyEventHandler();
-    this.setState({ inEditMode: false });
+    this.setState({ inEditMode: false }, () => this.removeEscapeKeyEventHandler());
   }
 
   initializeEscapeKeyEventHandler() {
@@ -35,7 +38,10 @@ export default class EditableCard extends Component {
   }
 
   removeEscapeKeyEventHandler() {
-    document.removeEventListener('keydown', this.escapeKeyEventHandler);
+    if (this.escapeKeyEventHandler) {
+      document.removeEventListener('keydown', this.escapeKeyEventHandler);
+      this.escapeKeyEventHandler = undefined;
+    }
   }
 
   renderCard() {
