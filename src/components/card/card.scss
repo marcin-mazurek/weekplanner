@@ -7,10 +7,13 @@ $card-spacing-between-elements: 10px;
   display: block;
   margin: $card-spacing 0;
   padding: $card-spacing $card-spacing ($card-spacing - $card-spacing-between-elements) $card-spacing;
-  transition: all 450ms;
 
-  &:hover .doneIcon, &:focus .doneIcon {
+  &:hover .doneButton, &:focus .doneButton {
     opacity: 1;
+  }
+
+  &.plain {
+    cursor: default;
   }
 
   &.editModeOriginal {
@@ -23,7 +26,7 @@ $card-spacing-between-elements: 10px;
   }
 }
 
-.title, .description, .time, .checklist {
+.title, .description, .time, .checklist, .actions {
   margin: 0 0 $card-spacing-between-elements 0;
 }
 
@@ -38,12 +41,12 @@ $card-spacing-between-elements: 10px;
 
 .doneButton {
   float: right;
+  opacity: 0;
   margin: -15px -12px 0 0 !important;
 }
 
 .doneIcon {
   fill: material-color('green', '600') !important;
-  opacity: 0;
 }
 
 .description {
@@ -73,5 +76,16 @@ $card-spacing-between-elements: 10px;
 
   label {
     font-size: $font-size-paragraph !important;
+  }
+}
+
+.actions {
+  display: flex;
+  margin: -6px 0 3px -6px;
+
+  button {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
   }
 }

@@ -3,6 +3,8 @@ import styles from './card.scss';
 import IconButton from 'material-ui/IconButton';
 import ClockIcon from 'material-ui/svg-icons/device/access-time';
 import DoneIcon from 'material-ui/svg-icons/action/done';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
+import ColorIcon from 'material-ui/svg-icons/action/invert-colors';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import cx from 'classnames';
@@ -19,9 +21,9 @@ export default class Card extends Component {
     }
   }
 
-  handleClick() {
+  handleClick(event) {
     if (this.props.onTouchTap) {
-      this.props.onTouchTap();
+      this.props.onTouchTap(event);
     }
   }
 
@@ -40,7 +42,7 @@ export default class Card extends Component {
     }
   }
 
-  renderDoneButton() {
+  renderDoneHoverButton() {
     if (!this.isEditMode()) {
       // TODO: provide event handler
       return (
@@ -72,8 +74,30 @@ export default class Card extends Component {
       <Checkbox label={subtask.description}
         className={styles.checkbox}
         defaultChecked={subtask.checked}
-        onTouchTap={event => event.stopPropagation()} /> // TODO: this needs to be controlled by React (change to checked prop)
+        onTouchTap={event => event.stopPropagation()}
+        key={subtask.id} /> // TODO: this needs to be controlled by React (change to checked prop)
     );
+  }
+
+  renderActions() {
+    if (this.isEditMode()) {
+      return (
+        <div className={styles.actions}>
+          <IconButton tooltip="Add reminder" onTouchTap={event => event.stopPropagation()}>
+            <ClockIcon />
+          </IconButton>
+          <IconButton tooltip="Change color" onTouchTap={event => event.stopPropagation()}>
+            <ColorIcon />
+          </IconButton>
+          <IconButton tooltip="Delete" onTouchTap={event => event.stopPropagation()}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton onTouchTap={event => event.stopPropagation()}>
+            <DoneIcon />
+          </IconButton>
+        </div>
+      )
+    }
   }
 
   render() {
@@ -82,11 +106,12 @@ export default class Card extends Component {
         className={cx(styles.card, styles[this.props.variant])}
         style={this.getCardStyles()}
         onTouchTap={this.handleClick}>
-        {this.renderDoneButton()}
+        {this.renderDoneHoverButton()}
         {this.renderTime()}
         <h3 className={styles.title} contentEditable={this.isEditMode()}>{this.props.title}</h3>
         {this.renderDescription()}
         {this.renderChecklist()}
+        {this.renderActions()}
       </Paper>
     );
   }
