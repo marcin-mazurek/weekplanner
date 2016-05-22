@@ -4,22 +4,23 @@
   "version": "0.0.1",
   "description": "WeekPlanner app",
   "scripts": {
-    "start": "webpack-dev-server --progress --profile --colors --hot",
-    "build": "webpack --progress --profile --colors"
+    "start": "node server.js",
+    "dev": "webpack-dev-server --progress --profile --colors --hot",
+    "build": "webpack -p --progress --profile --colors",
+    "postinstall": "npm run build"
   },
   "author": "Marcin Mazurek <marcin@mazurek.pro>",
   "license": "MIT",
   "dependencies": {
     "classnames": "2.2.5",
+    "express": "^4.13.4",
     "lodash": "4.12.0",
     "material-ui": "0.15.0",
     "moment": "2.13.0",
     "react": "15.1.0",
     "react-addons-css-transition-group": "^15.1.0",
     "react-dom": "15.1.0",
-    "react-tap-event-plugin": "1.0.0"
-  },
-  "devDependencies": {
+    "react-tap-event-plugin": "1.0.0",
     "babel-core": "6.9.0",
     "babel-loader": "6.2.4",
     "babel-preset-es2015": "6.9.0",

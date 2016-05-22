@@ -5,9 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
 	entry: [
-		'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
-		'webpack/hot/only-dev-server',
-		'./src/index.jsx' // Application entry point
+		'./src/index.jsx'
 	],
 	output: {
 		path: 'public',
@@ -22,7 +20,7 @@ var config = {
 			{
 				test: /\.jsx?$/,
 				exclude: /(node_modules)/,
-				loaders: ['react-hot', 'babel'],
+				loader: isProduction ? 'babel' : 'react-hot!babel',
 			},
 			{
 				test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -79,20 +77,27 @@ if (isProduction) {
 	);
 
 	// Bundle styles into one CSS file
-	config.loaders.push({
+	config.plugins.push(
+		new ExtractTextPlugin('stylesheet.css', { allChunks: true })
+	);
+
+	config.module.loaders.push({
 		test: /\.scss$/,
 		loader: ExtractTextPlugin.extract('style', stylesLoaderConfig)
 	});
 }
 else {
+	// Webpack dev server and hot reloading
+	config.entry.push(
+		'webpack-dev-server/client?http://0.0.0.0:8080',
+		'webpack/hot/only-dev-server'
+	);
+
 	// Load styles inline for hot reloading
 	config.module.loaders.push({
 		test: /\.scss$/,
 		loader: 'style!' + stylesLoaderConfig
 	});
-	config.plugins.push(
-		new ExtractTextPlugin('stylesheet.css', { allChunks: true })
-	);
 
 	// Add source maps for debugging
 	config.devtool = 'source-map';
