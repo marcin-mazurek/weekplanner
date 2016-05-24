@@ -5,6 +5,7 @@ import ClockIcon from 'material-ui/svg-icons/device/access-time';
 import DoneIcon from 'material-ui/svg-icons/action/done';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import ColorIcon from 'material-ui/svg-icons/action/invert-colors';
+import RepeatIcon from 'material-ui/svg-icons/av/repeat';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
 import cx from 'classnames';
@@ -89,10 +90,13 @@ export default class Card extends Component {
           <IconButton tooltip="Change color" onTouchTap={event => event.stopPropagation()}>
             <ColorIcon />
           </IconButton>
+          <IconButton tooltip="Set repeat rules" onTouchTap={event => event.stopPropagation()}>
+            <RepeatIcon />
+          </IconButton>
           <IconButton tooltip="Delete" onTouchTap={event => event.stopPropagation()}>
             <DeleteIcon />
           </IconButton>
-          <IconButton onTouchTap={event => event.stopPropagation()}>
+          <IconButton tooltip="Mark as done" onTouchTap={event => event.stopPropagation()}>
             <DoneIcon />
           </IconButton>
         </div>
