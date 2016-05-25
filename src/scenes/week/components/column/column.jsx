@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import Card from '../../../../components/card/card';
 import { times } from 'lodash';
 import moment from 'moment';
-import CardWithFakeData from 'components/card/card-with-fake-data';
 import AddIcon from 'material-ui/svg-icons/content/add-circle-outline';
 import IconButton from 'material-ui/IconButton';
 import styles from './column.scss';
@@ -12,8 +12,7 @@ export default class Column extends Component {
       <div className={styles.column}>
         <div className={styles.header}>
           <div className={styles.headerText}>
-            { /* TODO: fake data */ }
-            {moment().add(this.props.daysSinceToday, 'days').format('dddd DD.MM')}
+            {this.props.date.format('dddd DD.MM')}
           </div>
           <div>
             { /* TODO: add event handler */ }
@@ -23,8 +22,7 @@ export default class Column extends Component {
           </div>
         </div>
         <div className={styles.content}>
-          { /* TODO: fake data */ }
-          {times(Math.floor(Math.random() * 6), index => <CardWithFakeData key={index} />)}
+          {this.props.cards.map(cardData => <Card {...cardData} />)}
         </div>
       </div>
     );

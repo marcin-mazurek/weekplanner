@@ -1,6 +1,6 @@
-import EditableCard from './editable-card/editable-card';
 import { times } from 'lodash';
 import React from 'react';
+import moment from 'moment';
 
 const sentences = [
   'Lorem ipsum dolor sit amet.',
@@ -22,7 +22,7 @@ const colors = [
 const randomNumber = (max, min = 0) => min + Math.round(Math.random() * (max-min));
 const randomElement = (array) => array[randomNumber(array.length - 1)];
 
-const getText = () => {
+const generateDescription = () => {
   const text = [];
 
   times(randomNumber(7), () => {
@@ -32,9 +32,11 @@ const getText = () => {
   return text.join(' ');
 };
 
-const getTime = () => randomNumber(1) ? null : `${randomNumber(23)}:${randomNumber(5)}0`;
+const generateTime = () => randomNumber(1) ? null : `${randomNumber(23)}:${randomNumber(5)}0`;
 
-const getChecklist = () => {
+const generateId = () => randomNumber(10000000).toString();
+
+const generateChecklist = () => {
   if (randomNumber(1)) {
     return null;
   }
@@ -43,7 +45,7 @@ const getChecklist = () => {
 
   times(randomNumber(5), index => {
     checklist.push({
-      id: randomNumber(10000000).toString(),
+      id: generateId(),
       checked: !!randomNumber(1),
       description: 'Subtask ' + (index + 1)
     });
@@ -52,4 +54,30 @@ const getChecklist = () => {
   return checklist;
 }
 
-export default () => <EditableCard description={getText()} checklist={getChecklist()} color={randomElement(colors)} time={getTime()} title={randomElement(sentences)} />;
+function generateCard() {
+  return {
+    id: generateId(),
+    description: generateDescription(),
+    checklist: generateChecklist(),
+    color: randomElement(colors),
+    time: generateTime(),
+    title: randomElement(sentences)
+  };
+}
+
+function generateDay(daysSinceToday) {
+  const cards = [];
+  times(randomNumber(6), () => cards.push(generateCard()));
+
+  return {
+    id: generateId(),
+    date: moment().add(daysSinceToday, 'days'),
+    cards
+  };
+}
+
+export default function generateFakeModel(numberOfDays) {
+  const days = [];
+  times(numberOfDays, day => days.push(generateDay(day)));
+  return days;
+}
