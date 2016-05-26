@@ -1,0 +1,15 @@
+@import '../../../styles/helpers';
+
+.drag {
+  display: flex;
+  margin-left: -9px;
+  cursor: move;
+
+  svg:first-child {
+    margin-right: -18px;
+  }
+
+  svg {
+    fill: material-color('grey', '700') !important;
+  }
+}
