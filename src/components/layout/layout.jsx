@@ -33,8 +33,7 @@ export default class Layout extends Component {
           docked={false}
           width={300}
           open={this.state.open}
-          onRequestChange={(o) => this.setState({ open: o })}
-        >
+          onRequestChange={(o) => this.setState({ open: o })}>
           <MenuItem onTouchTap={this.toggleMenu} leftIcon={<DashboardView />} secondaryText="Alt+D">Dashboard view</MenuItem>
           <MenuItem onTouchTap={this.toggleMenu} leftIcon={<WeekView />} secondaryText="Alt+W">Week view</MenuItem>
           <MenuItem onTouchTap={this.toggleMenu} leftIcon={<MonthView />} secondaryText="Alt+M">Month view</MenuItem>

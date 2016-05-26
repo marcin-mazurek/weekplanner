@@ -38,7 +38,7 @@ const generateId = () => randomNumber(10000000).toString();
 
 const generateChecklist = () => {
   if (randomNumber(1)) {
-    return null;
+    return [];
   }
 
   const checklist = [];

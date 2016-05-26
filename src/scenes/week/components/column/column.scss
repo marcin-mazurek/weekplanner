@@ -8,7 +8,8 @@ $minimal-column-width: 240px;
 :export { minimalColumnWidth: $minimal-column-width; }
 
 .column {
-  @include flex-1;
+  display: flex;
+  flex: 1;
   flex-direction: column;
   border-right: $column-border;
   min-width: $minimal-column-width;
@@ -30,7 +31,8 @@ $minimal-column-width: 240px;
 }
 
 .headerText {
-  @include flex-1;
+  display: flex;
+  flex: 1;
   justify-content: center;
   text-align: center;
   padding-left: $button-width-height;
