@@ -1,0 +1,46 @@
+@import '../../styles/helpers';
+
+.card {
+  display: block;
+  margin: auto;
+  padding: $card-spacing;
+  max-width: 700px;
+}
+
+.title {
+  font-size: $font-size-header-4 !important;
+  font-weight: bold;
+}
+
+.time {
+  display: flex;
+  font-size: $font-size-paragraph;
+}
+
+.description {
+  font-size: $font-size-paragraph !important;
+  line-height: $line-height-paragraph !important;
+  // remove the excessive margin added by Material UI components
+  margin-top: -15px;
+}
+
+.title {
+  // remove the excessive margin added by Material UI components
+  margin-top: -10px;
+}
+
+.description, .title {
+  // don't display non-focused underline
+  hr:first-child {
+    border: none !important;
+  }
+  hr:last-child {
+    border-color: $weekplanner-primary-blue !important;
+  }
+}
+
+.timeIcon {
+  margin: 0 5px 5px 0;
+  width: 16px !important;
+  height: 16px !important;
+}
