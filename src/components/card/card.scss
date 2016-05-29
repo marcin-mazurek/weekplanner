@@ -52,32 +52,6 @@
   height: 16px !important;
 }
 
-// TODO: find a better way of styling the component
 .checkbox {
-  margin-bottom: 3px;
-
-  // checked checkbox
-  svg:nth-child(2) {
-    fill: $weekplanner-primary-blue !important;
-  }
-
-  // tickbox
-  > div > div {
-    margin-right: 7px !important;
-  }
-
-  label {
-    font-size: $font-size-paragraph !important;
-  }
-}
-
-.actions {
-  display: flex;
-  margin: -6px 0 3px -6px;
-
-  button {
-    width: 36px !important;
-    height: 36px !important;
-    padding: 0 !important;
-  }
+  margin-bottom: 4px;
 }

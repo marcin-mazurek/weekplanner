@@ -4,7 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import ClockIcon from 'material-ui/svg-icons/device/access-time';
 import DoneIcon from 'material-ui/svg-icons/action/done';
 import Paper from 'material-ui/Paper';
-import Checkbox from 'material-ui/Checkbox';
+import Checkbox from 'components/checkbox/checkbox';
 import cx from 'classnames';
 
 export default class Card extends Component {
@@ -55,10 +55,10 @@ export default class Card extends Component {
   renderSubtask(subtask) {
     return (
       <Checkbox label={subtask.description}
-        className={styles.checkbox}
-        defaultChecked={subtask.checked}
+        checked={subtask.checked}
         onTouchTap={event => event.stopPropagation()}
-        key={subtask.id} /> // TODO: this needs to be controlled by React (change to checked prop)
+        className={styles.checkbox}
+        key={subtask.id} />
     );
   }
 
