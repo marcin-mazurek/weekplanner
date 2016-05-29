@@ -1,0 +1,17 @@
+@import '../../styles/helpers';
+
+.checkbox {
+  // checked checkbox
+  svg:nth-child(2) {
+    fill: $weekplanner-primary-blue !important;
+  }
+
+  // tickbox
+  > div > div {
+    margin-right: 7px !important;
+  }
+
+  label {
+    font-size: $font-size-paragraph !important;
+  }
+}
