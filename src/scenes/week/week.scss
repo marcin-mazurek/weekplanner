@@ -1,5 +1,4 @@
-@import '../../styles/helpers';
-
 .container {
-  @include flex-1;
+  display: flex;
+  flex: 1;
 }
