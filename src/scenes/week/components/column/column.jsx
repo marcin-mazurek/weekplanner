@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Card from '../../../../components/card/card';
+import CardContainer from '../../../../containers/card-container/card-container';
 import { times } from 'lodash';
 import moment from 'moment';
 import AddIcon from 'material-ui/svg-icons/content/add-circle-outline';
@@ -22,11 +22,15 @@ export default class Column extends Component {
           </div>
         </div>
         <div className={styles.content}>
-          {this.props.cards.map(cardData => <Card {...cardData} />)}
+          {this.props.cards.map(card => (
+            <CardContainer {...card} key={card.id} />
+          ))}
         </div>
       </div>
     );
   }
 }
+
+// TODO: specify propTypes
 
 export const minimalColumnWidth = parseInt(styles.minimalColumnWidth);

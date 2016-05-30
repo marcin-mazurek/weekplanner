@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Card from '../card';
-import styles from './editable-card.scss';
-import transitions from './editable-card-transitions.scss';
+import Card from '../../components/card/card';
+import CardModal from '../../components/card-modal/card-modal';
+import styles from './card-container.scss';
+import transitions from './card-container-transitions.scss';
 import ReactDOM from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -46,7 +47,7 @@ export default class EditableCard extends Component {
 
   renderCard() {
     if (this.state.inEditMode) {
-      return <Card {...this.props} variant="editModeOriginal" />;
+      return <Card {...this.props} variant="edited" />;
     } else {
       return <Card {...this.props} onTouchTap={this.enterEditMode} variant="plain" />;
     }
@@ -56,7 +57,7 @@ export default class EditableCard extends Component {
     if (this.state.inEditMode) {
       return (
         <div className={styles.modalContainer} onTouchTap={this.leaveEditMode} key="modalContainer">
-          <Card {...this.props} onTouchTap={event => event.stopPropagation()} variant="editModeModal" />
+          <CardModal {...this.props} onTouchTap={event => event.stopPropagation()} variant="editModeModal" />
         </div>
       );
     }

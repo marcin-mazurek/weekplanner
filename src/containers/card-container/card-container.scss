@@ -4,15 +4,16 @@
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1200; // overlay the AppBar component
+  // overlay the AppBar component
+  z-index: 1200;
   padding: 100px 30px 0 30px;
   background: rgba(0,0,0,0.5);
 
-  @media (min-width: 1000px) {
-    padding: 300px;
-  }
-
   @media (min-width: 700px) {
     padding: 150px;
+  }
+
+  @media (min-width: 1000px) {
+    padding: 300px;
   }
 }
