@@ -1,0 +1,16 @@
+@import '../../../styles/helpers';
+
+.container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.delete {
+  margin: -10px;
+}
+
+.checkbox {
+  // display checkbox inline, next to input
+  width: initial !important;
+}

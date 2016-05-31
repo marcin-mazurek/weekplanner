@@ -4,6 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import ClockIcon from 'material-ui/svg-icons/device/access-time';
+import Checklist from './checklist/checklist';
 import styles from './card-modal.scss';
 
 export default class CardModal extends Component {
@@ -53,6 +54,7 @@ export default class CardModal extends Component {
           fullWidth={true}
           className={styles.description}
           spellCheck={false} />
+        <Checklist elements={this.props.checklist} />
         <Actions />
       </Paper>
     );

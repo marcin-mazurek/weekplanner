@@ -1,0 +1,21 @@
+@import '../../../styles/helpers';
+
+.input {
+  border: 0;
+  outline: 0;
+  flex: 1;
+  font: $font-size-paragraph Roboto !important;
+  background: transparent;
+
+  &::-webkit-input-placeholder {
+    color: $weekplanner-text;
+  }
+
+  &::-moz-placeholder {
+    color: $weekplanner-text;
+  }
+
+  &::-ms-input-placeholder {
+    color: $weekplanner-text;
+  }
+}
