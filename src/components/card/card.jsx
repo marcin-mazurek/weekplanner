@@ -8,11 +8,6 @@ import Checkbox from 'components/checkbox/checkbox';
 import cx from 'classnames';
 
 export default class Card extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
   getCardStyles() {
     if (this.props.color) {
       return { backgroundColor: this.props.color };
@@ -66,7 +61,7 @@ export default class Card extends Component {
     return (
       <Paper className={cx(styles.card, styles[this.props.variant])}
         style={this.getCardStyles()}
-        onTouchTap={this.handleClick}>
+        onTouchTap={event => this.handleClick(event)}>
         { /* TODO: provide event handler */ }
         <IconButton className={styles.doneButton} onTouchTap={event => event.stopPropagation()}>
           <DoneIcon className={styles.doneIcon} />

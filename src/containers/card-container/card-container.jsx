@@ -12,17 +12,11 @@ export default class EditableCard extends Component {
     this.state = {
       inEditMode: false
     };
-    this.leaveEditMode = this.leaveEditMode.bind(this);
-    this.enterEditMode = this.enterEditMode.bind(this);
   }
 
   enterEditMode(event) {
     event && event.stopPropagation();
     this.setState({ inEditMode: true }, () => this.initializeEscapeKeyEventHandler());
-  }
-
-  componentWillUnmount() {
-    this.removeEscapeKeyEventHandler();
   }
 
   leaveEditMode(event) {
@@ -31,11 +25,10 @@ export default class EditableCard extends Component {
   }
 
   initializeEscapeKeyEventHandler() {
-    this.escapeKeyEventHandler = document.addEventListener('keydown', event => {
-      if (event.keyCode == 27) {
-        this.leaveEditMode();
-      }
-    });
+    this.escapeKeyEventHandler = document.addEventListener(
+      'keydown',
+      event => this.handleKeyDownEvent(event)
+    );
   }
 
   removeEscapeKeyEventHandler() {
@@ -45,18 +38,28 @@ export default class EditableCard extends Component {
     }
   }
 
+  handleKeyDownEvent(event) {
+    if (event.keyCode == 27) {
+      this.leaveEditMode();
+    }
+  }
+
+  componentWillUnmount() {
+    this.removeEscapeKeyEventHandler();
+  }
+
   renderCard() {
     if (this.state.inEditMode) {
       return <Card {...this.props} variant="edited" />;
     } else {
-      return <Card {...this.props} onTouchTap={this.enterEditMode} variant="plain" />;
+      return <Card {...this.props} onTouchTap={event => this.enterEditMode(event)} variant="plain" />;
     }
   }
 
   renderEditCard() {
     if (this.state.inEditMode) {
       return (
-        <div className={styles.modalContainer} onTouchTap={this.leaveEditMode} key="modalContainer">
+        <div className={styles.modalContainer} onTouchTap={event => this.leaveEditMode(event)} key="modalContainer">
           <CardModal {...this.props} onTouchTap={event => event.stopPropagation()} variant="editModeModal" />
         </div>
       );

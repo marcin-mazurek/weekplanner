@@ -8,11 +8,6 @@ import Checklist from './checklist/checklist';
 import styles from './card-modal.scss';
 
 export default class CardModal extends Component {
-  constructor(props) {
-    super(props);
-    this.handleTouchTap = this.handleTouchTap.bind(this);
-  }
-
   getCardStyles() {
     if (this.props.color) {
       return { backgroundColor: this.props.color };
@@ -41,7 +36,7 @@ export default class CardModal extends Component {
       <Paper zDepth={5}
         className={styles.card}
         style={this.getCardStyles()}
-        onTouchTap={this.handleTouchTap}>
+        onTouchTap={event => this.handleTouchTap(event)}>
         {this.renderTime()}
         <TextField hintText="Card title"
           defaultValue={this.props.title}
