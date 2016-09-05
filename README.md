@@ -4,4 +4,4 @@
 
 ## Demo
 
-![Demo image](https://cloud.githubusercontent.com/assets/6684554/18255186/bea0d0b2-739e-11e6-86ac-2a80f3c80914.png)
+![Demo image](https://cloud.githubusercontent.com/assets/6684554/18255216/feb0fc18-739e-11e6-85de-af40699a44c3.png)
